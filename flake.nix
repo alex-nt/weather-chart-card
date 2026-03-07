@@ -1,5 +1,5 @@
 {
-  description = "OpenAPI generator nix flake";
+  description = "Weather chart card nix flake";
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs";  
   inputs.flake-utils.url = "github:numtide/flake-utils";

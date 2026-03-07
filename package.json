@@ -1,38 +1,40 @@
 {
-  "name": "weather-chart-card",
-  "version": "1.0.1",
-  "description": "Weather card with charts for Home Assistant Lovelace UI",
-  "keywords": [
-    "home-assistant",
-    "homeassistant",
-    "hass",
-    "automation",
-    "lovelace",
-    "custom-cards"
-  ],
-  "module": "src/main.js",
-  "type": "module",
-  "repository": "git@github.com:mlamberts78/weather-chart-card.git",
-  "author": "Marc Lamberts",
-  "license": "MIT",
-  "dependencies": {
-    "chart.js": "4.5.1",
-    "chartjs-plugin-datalabels": "2.2.0",
-    "lit": "3.3.2",
-    "relative-time": "2.2.1"
-  },
-  "devDependencies": {
-    "eslint": "10.0.2",
-    "rollup": "4.59.0",
-    "@web/rollup-plugin-copy": "0.5.1",
-    "@rollup/plugin-replace": "6.0.3",
-    "@rollup/plugin-node-resolve": "16.0.3",
-    "rollup-plugin-serve": "3.0.0"
-  },
-  "scripts": {
-    "start": "rollup -c rollup.config.dev.js --watch",
-    "build": "npm run lint && npm run rollup",
-    "lint": "eslint 'src/**/*.js'",
-    "rollup": "rollup -c"
-  }
+    "name": "weather-chart-card",
+    "version": "1.0.1",
+    "description": "Weather card with charts for Home Assistant Lovelace UI",
+    "keywords": [
+        "home-assistant",
+        "homeassistant",
+        "hass",
+        "automation",
+        "lovelace",
+        "custom-cards"
+    ],
+    "module": "src/main.js",
+    "type": "module",
+    "repository": "git@github.com:mlamberts78/weather-chart-card.git",
+    "author": "Marc Lamberts",
+    "license": "MIT",
+    "dependencies": {
+        "chart.js": "4.5.1",
+        "chartjs-plugin-datalabels": "2.2.0",
+        "lit": "3.3.2",
+        "relative-time": "2.2.1"
+    },
+    "devDependencies": {
+        "eslint": "10.0.3",
+        "prettier": "3.8.1",
+        "rollup": "4.59.0",
+        "@web/rollup-plugin-copy": "0.5.1",
+        "@rollup/plugin-replace": "6.0.3",
+        "@rollup/plugin-node-resolve": "16.0.3",
+        "rollup-plugin-serve": "3.0.0"
+    },
+    "scripts": {
+        "start": "rollup -c rollup.config.dev.js --watch",
+        "build": "npm run lint && npm run format && npm run rollup",
+        "format": "npx prettier . '!dist/*.{js,jsx,vue}' --write ",
+        "lint": "eslint 'src/**/*.js'",
+        "rollup": "rollup -c"
+    }
 }
