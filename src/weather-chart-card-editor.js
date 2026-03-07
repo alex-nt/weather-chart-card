@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit'
+import { LitElement, html } from 'lit';
 
 const ALT_SCHEMA = [
     {
@@ -108,7 +108,7 @@ const ALT_SCHEMA = [
             select: { options: ['', 'm', 'km', 'mi'], mode: 'dropdown' },
         },
     },
-]
+];
 
 class WeatherChartCardEditor extends LitElement {
     static get properties() {
@@ -118,44 +118,45 @@ class WeatherChartCardEditor extends LitElement {
             entities: { type: Array },
             hass: { type: Object },
             _entity: { type: String },
-        }
+        };
     }
 
     constructor() {
-        super()
-        this.currentPage = 'card'
-        this._entity = ''
-        this.entities = []
-        this._formValueChanged = this._formValueChanged.bind(this)
+        super();
+        this._config = {};
+        this.currentPage = 'card';
+        this._entity = '';
+        this.entities = [];
+        this._formValueChanged = this._formValueChanged.bind(this);
     }
 
     setConfig(config) {
         if (!config) {
-            throw new Error('Invalid configuration')
+            throw new Error('Invalid configuration');
         }
-        this._config = config
-        this._entity = config.entity || ''
+        this._config = config || {};
+        this._entity = config.entity || '';
         this.hasApparentTemperature =
             (this.hass &&
                 this.hass.states[config.entity] &&
                 this.hass.states[config.entity].attributes &&
                 this.hass.states[config.entity].attributes
                     .apparent_temperature !== undefined) ||
-            config.feels_like !== undefined
+            config.feels_like !== undefined;
         this.hasDewpoint =
             (this.hass &&
                 this.hass.states[config.entity] &&
                 this.hass.states[config.entity].attributes &&
                 this.hass.states[config.entity].attributes.dew_point !==
                     undefined) ||
-            config.dew_point !== undefined
+            config.dew_point !== undefined;
         this.hasWindgustspeed =
             (this.hass &&
                 this.hass.states[config.entity] &&
                 this.hass.states[config.entity].attributes &&
                 this.hass.states[config.entity].attributes.wind_gust_speed !==
                     undefined) ||
-            config.wind_gust_speed !== undefined
+            config.wind_gust_speed !== undefined;
         this.hasVisibility =
             (this.hass &&
                 this.hass.states[config.entity] &&
@@ -165,32 +166,32 @@ class WeatherChartCardEditor extends LitElement {
             config.visibility_entity !== undefined ||
             (config.visibility !== undefined &&
                 this.hass &&
-                this.hass.states[config.visibility])
+                this.hass.states[config.visibility]);
         this.hasDescription =
             (this.hass &&
                 this.hass.states[config.entity] &&
                 this.hass.states[config.entity].attributes &&
                 this.hass.states[config.entity].attributes.description !==
                     undefined) ||
-            config.description !== undefined
-        this.fetchEntities()
-        this.requestUpdate()
+            config.description !== undefined;
+        this.fetchEntities();
+        this.requestUpdate();
     }
 
     get config() {
-        return this._config
+        return this._config;
     }
 
     updated(changedProperties) {
         if (changedProperties.has('hass')) {
-            this.fetchEntities()
+            this.fetchEntities();
         }
         if (
             changedProperties.has('_config') &&
             this._config &&
             this._config.entity
         ) {
-            this._entity = this._config.entity
+            this._entity = this._config.entity;
         }
     }
 
@@ -198,122 +199,122 @@ class WeatherChartCardEditor extends LitElement {
         if (this.hass) {
             this.entities = Object.keys(this.hass.states).filter((e) =>
                 e.startsWith('weather.')
-            )
-            this.requestUpdate()
+            );
+            this.requestUpdate();
         }
     }
 
     _EntityChanged(event, key) {
         if (!this._config) {
-            return
+            return;
         }
-        const newConfig = { ...this._config }
-        newConfig.entity = event.target.value
-        this._entity = event.target.value
-        this.configChanged(newConfig)
+        const newConfig = { ...this._config };
+        newConfig.entity = event.target.value;
+        this._entity = event.target.value;
+        this.configChanged(newConfig);
     }
 
     configChanged(newConfig) {
         const event = new Event('config-changed', {
             bubbles: true,
             composed: true,
-        })
-        event.detail = { config: newConfig }
-        this.dispatchEvent(event)
+        });
+        event.detail = { config: newConfig };
+        this.dispatchEvent(event);
     }
 
     _valueChanged(event, key) {
         if (!this._config) {
-            return
+            return;
         }
 
-        const newConfig = { ...this._config }
+        const newConfig = { ...this._config };
 
         if (key.includes('.')) {
-            const parts = key.split('.')
-            let currentLevel = newConfig
+            const parts = key.split('.');
+            let currentLevel = newConfig;
 
             for (let i = 0; i < parts.length - 1; i++) {
-                const part = parts[i]
+                const part = parts[i];
 
-                currentLevel[part] = { ...currentLevel[part] }
+                currentLevel[part] = { ...currentLevel[part] };
 
-                currentLevel = currentLevel[part]
+                currentLevel = currentLevel[part];
             }
 
-            const finalKey = parts[parts.length - 1]
+            const finalKey = parts[parts.length - 1];
             if (event.target.checked !== undefined) {
-                currentLevel[finalKey] = event.target.checked
+                currentLevel[finalKey] = event.target.checked;
             } else {
-                currentLevel[finalKey] = event.target.value
+                currentLevel[finalKey] = event.target.value;
             }
         } else {
             if (event.target.checked !== undefined) {
-                newConfig[key] = event.target.checked
+                newConfig[key] = event.target.checked;
             } else {
-                newConfig[key] = event.target.value
+                newConfig[key] = event.target.value;
             }
         }
 
-        this.configChanged(newConfig)
-        this.requestUpdate()
+        this.configChanged(newConfig);
+        this.requestUpdate();
     }
 
     _handleStyleChange(event) {
         if (!this._config) {
-            return
+            return;
         }
-        const newConfig = JSON.parse(JSON.stringify(this._config))
-        newConfig.forecast.style = event.target.value
-        this.configChanged(newConfig)
-        this.requestUpdate()
+        const newConfig = JSON.parse(JSON.stringify(this._config));
+        newConfig.forecast.style = event.target.value;
+        this.configChanged(newConfig);
+        this.requestUpdate();
     }
 
     _handleTypeChange(event) {
         if (!this._config) {
-            return
+            return;
         }
-        const newConfig = JSON.parse(JSON.stringify(this._config))
-        newConfig.forecast.type = event.target.value
-        this.configChanged(newConfig)
-        this.requestUpdate()
+        const newConfig = JSON.parse(JSON.stringify(this._config));
+        newConfig.forecast.type = event.target.value;
+        this.configChanged(newConfig);
+        this.requestUpdate();
     }
 
     _handleIconStyleChange(event) {
         if (!this._config) {
-            return
+            return;
         }
-        const newConfig = JSON.parse(JSON.stringify(this._config))
-        newConfig.icon_style = event.target.value
-        this.configChanged(newConfig)
-        this.requestUpdate()
+        const newConfig = JSON.parse(JSON.stringify(this._config));
+        newConfig.icon_style = event.target.value;
+        this.configChanged(newConfig);
+        this.requestUpdate();
     }
 
     _handlePrecipitationTypeChange(e) {
-        const newValue = e.target.value
-        this.config.forecast.precipitation_type = newValue
+        const newValue = e.target.value;
+        this.config.forecast.precipitation_type = newValue;
     }
 
     _formValueChanged(event) {
         if (event.target.tagName.toLowerCase() === 'ha-form') {
-            const newConfig = event.detail.value
-            this.configChanged(newConfig)
-            this.requestUpdate()
+            const newConfig = event.detail.value;
+            this.configChanged(newConfig);
+            this.requestUpdate();
         }
     }
 
     showPage(pageName) {
-        this.currentPage = pageName
-        this.requestUpdate()
+        this.currentPage = pageName;
+        this.requestUpdate();
     }
 
     render() {
         if (this._config && this._config.entity !== this._entity) {
-            this._entity = this._config.entity
+            this._entity = this._config.entity;
         }
-        const forecastConfig = this._config.forecast || {}
-        const unitsConfig = this._config.units || {}
-        const isShowTimeOn = this._config.show_time !== false
+        const forecastConfig = this._config.forecast || {};
+        const unitsConfig = this._config.units || {};
+        const isShowTimeOn = this._config.show_time !== false;
 
         return html`
             <style>
@@ -677,6 +678,14 @@ class WeatherChartCardEditor extends LitElement {
                         ></ha-switch>
                         <label class="switch-label"> Autoscroll </label>
                     </div>
+                    <div class="switch-container">
+                        <ha-switch
+                            @change="${(e) =>
+                                this._valueChanged(e, 'embolden')}"
+                            .checked="${this._config.embolden === true}"
+                        ></ha-switch>
+                        <label class="switch-label"> Embolden </label>
+                    </div>
                     <div class="time-container">
                         <div class="switch-right">
                             <ha-switch
@@ -800,6 +809,20 @@ class WeatherChartCardEditor extends LitElement {
                             .value="${this._config.icons_size || '25'}"
                             @change="${(e) =>
                                 this._valueChanged(e, 'icons_size')}"
+                        ></ha-textfield>
+                        <ha-textfield
+                            label="Icon Size for wind"
+                            type="number"
+                            .value="${this._config.icons_size_wind || '15'}"
+                            @change="${(e) =>
+                                this._valueChanged(e, 'icons_size_wind')}"
+                        ></ha-textfield>
+                        <ha-textfield
+                            label="Icon Size for forecast"
+                            type="number"
+                            .value="${this._config.icons_size_forecast || '15'}"
+                            @change="${(e) =>
+                                this._valueChanged(e, 'icons_size_forecast')}"
                         ></ha-textfield>
                         <ha-textfield
                             label="Curent temperature Font Size"
@@ -1121,7 +1144,7 @@ class WeatherChartCardEditor extends LitElement {
                     ></ha-form>
                 </div>
             </div>
-        `
+        `;
     }
 }
-customElements.define('weather-chart-card-editor', WeatherChartCardEditor)
+customElements.define('weather-chart-card-editor', WeatherChartCardEditor);

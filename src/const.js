@@ -8,7 +8,7 @@ const cardinalDirectionsIcon = [
     'arrow-right',
     'arrow-bottom-right',
     'arrow-down',
-]
+];
 
 const weatherIcons = {
     'clear-night': 'hass:weather-night',
@@ -26,7 +26,7 @@ const weatherIcons = {
     sunny: 'hass:weather-sunny',
     windy: 'hass:weather-windy',
     'windy-variant': 'hass:weather-windy-variant',
-}
+};
 
 const weatherIconsDay = {
     'clear-night': 'clear-night',
@@ -44,19 +44,19 @@ const weatherIconsDay = {
     sunny: 'clear-day',
     windy: 'wind',
     'windy-variant': 'wind',
-}
+};
 
 const weatherIconsNight = {
     ...weatherIconsDay,
     sunny: 'clear-night',
     partlycloudy: 'partlycloudy-night',
-}
+};
 
 const WeatherEntityFeature = {
     FORECAST_DAILY: 1,
     FORECAST_HOURLY: 2,
     FORECAST_TWICE_DAILY: 4,
-}
+};
 
 export {
     cardinalDirectionsIcon,
@@ -64,4 +64,4 @@ export {
     weatherIconsDay,
     weatherIconsNight,
     WeatherEntityFeature,
-}
+};

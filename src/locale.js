@@ -1149,6 +1149,6 @@ const locale = {
         windy: '바람',
         'windy-variant': '강풍',
     },
-}
+};
 
-export default locale
+export default locale;

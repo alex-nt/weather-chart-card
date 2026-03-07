@@ -1,9 +1,9 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import replace from '@rollup/plugin-replace'
-import { copy } from '@web/rollup-plugin-copy'
-import serve from 'rollup-plugin-serve'
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import { copy } from '@web/rollup-plugin-copy';
+import serve from 'rollup-plugin-serve';
 
-const dev = process.env.ROLLUP_WATCH
+const dev = process.env.ROLLUP_WATCH;
 
 const serveopts = {
     contentBase: ['./dist'],
@@ -13,7 +13,7 @@ const serveopts = {
     headers: {
         'Access-Control-Allow-Origin': '*',
     },
-}
+};
 
 export default {
     input: 'src/main.js',
@@ -35,4 +35,4 @@ export default {
         }),
         dev && serve(serveopts),
     ],
-}
+};

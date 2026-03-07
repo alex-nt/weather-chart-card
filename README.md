@@ -19,7 +19,7 @@
 This card is available in HACS (Home Assistant Community Store).
 HACS is a third party community store and is not included in Home Assistant out of the box.
 
-#### Configuration variables:
+#### Configuration variables
 
 ##### Card options
 
@@ -68,6 +68,7 @@ HACS is a third party community store and is not included in Home Assistant out 
 | use_12hour_format      | boolean | false        | Display time in 12-hour format (AM/PM) instead of 24-hour format.                                 |
 | icons                  | string  | none         | Path to the location of custom icons in svg format, for example `/local/weather-icons/`.          |
 | animated_icons         | boolean | false        | Enable the use of animated icons                                                                  |
+| embolden         | boolean | false        | Use bold text and lines                                       |
 | icon_style             | string  | 'style1'     | Options are 'style1' and'style2' for different set of animated icons.                             |
 | icons_size             | number  | 25           | The size of the animated or custom icons in pixels.                                               |
 | current_temp_size      | number  | 28           | The size of the current temperature in pixels.                                                    |
@@ -75,7 +76,7 @@ HACS is a third party community store and is not included in Home Assistant out 
 | day_date_size          | number  | 15           | The size of the current day and date in pixels.                                                   |
 | forecast               | object  | none         | See [forecast options](#forecast-options) for available options.                                  |
 | units                  | object  | none         | See [units of measurement](#units-of-measurement) for available options.                          |
-| locale                 | string  | none         | See [Supported languages](#Supported-languages) for available languages                           |
+| locale                 | string  | none         | See [Supported languages](#supported-languages) for available languages                           |
 | autoscroll             | boolean | false        | Update the chart each hour, hiding prior forecast datapoints                                      |
 
 ##### Forecast options
@@ -112,9 +113,9 @@ HACS is a third party community store and is not included in Home Assistant out 
 Icons should be in svg format. Icons should have names as shown [here](https://github.com/mlamberts78/weather-chart-card/blob/master/src/const.js#L24). Example:
 ![130360372-76d70c42-986c-46e3-b9b5-810f0317f94f](https://github.com/mlamberts78/weather-chart-card/assets/93537082/d3ee55a2-e64f-4354-b36d-9faf6ea37361)
 
-#### Example usage:
+#### Example usage
 
-###### Card with current time, date and day
+##### Card with current time, date and day
 
 ![date-time](https://github.com/mlamberts78/weather-chart-card/assets/93537082/ab2c32f7-8c6a-4a7e-84fc-f857a519a725)
 
@@ -128,7 +129,7 @@ animated_icons: true
 icon_style: style1
 ```
 
-###### Style2 chart
+##### Style2 chart
 
 ![style2](https://github.com/mlamberts78/weather-chart-card/assets/93537082/3067cc43-0e80-492c-b4a5-771b1e44ea17)
 
@@ -139,7 +140,7 @@ forecast:
     style: style2
 ```
 
-###### Chart only
+##### Chart only
 
 ![Chart-only](https://github.com/mlamberts78/weather-chart-card/assets/93537082/c99d85a4-30d1-4fd9-90ff-877421b39e9b)
 
@@ -153,7 +154,7 @@ forecast:
     show_wind_forecast: false
 ```
 
-###### Custom units
+##### Custom units
 
 ![Units](https://github.com/mlamberts78/weather-chart-card/assets/93537082/e72862ee-9bb7-4f97-9a3c-b17663c458aa)
 
@@ -165,7 +166,7 @@ units:
     speed: m/s
 ```
 
-###### Supported languages:
+##### Supported languages
 
 | Language   | Locale |
 | ---------- | ------ |
