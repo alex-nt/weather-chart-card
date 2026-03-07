@@ -961,7 +961,7 @@ class WeatherChartCard extends LitElement {
                         },
                         grid: {
                             drawTicks: false,
-                            color: dividerColor,
+                            color: config.embolden ? textColor : dividerColor,
                             ...(config.embolden ? { lineWidth: 3 } : {}),
                         },
                         ticks: {
