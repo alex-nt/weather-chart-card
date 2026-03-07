@@ -128,7 +128,7 @@ class WeatherChartCardEditor extends LitElement {
       return;
     }
 
-    let newConfig = { ...this._config };
+    const newConfig = { ...this._config };
 
     if (key.includes('.')) {
       const parts = key.split('.');

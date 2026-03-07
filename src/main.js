@@ -147,7 +147,7 @@ setConfig(config) {
   if (cardConfig.forecast.override_min_column_width > 0) {
     this.columnMinWidth = cardConfig.forecast.override_min_column_width;
   } else {
-    let fontSize = cardConfig.forecast.labels_font_size;
+    const fontSize = cardConfig.forecast.labels_font_size;
 
     let minWidthForIconAndWind;
     if (cardConfig.forecast.show_wind_forecast && cardConfig.forecast.show_wind_unit) {
@@ -644,7 +644,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
   // set min-width to force scrolling if too many columns
   const chartContainer = this.shadowRoot && this.shadowRoot.querySelector('div.chart-container');
   if (!chartContainer) {
-      return
+      return;
   }
   const totalMinWidth = Math.min(this.forecastItems, this.forecasts.length) * this.columnMinWidth;
   chartContainer.style['min-width'] = totalMinWidth + 'px';
@@ -738,7 +738,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
 
         let formattedValue;
         if (config.forecast.precipitation_type === 'rainfall') {
-          let unit = config.forecast.show_precip_unit ? ' ' + precipUnit : '';
+          const unit = config.forecast.show_precip_unit ? ' ' + precipUnit : '';
           if (probability !== undefined && probability !== null && config.forecast.show_probability) {
             formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${unit}\n${Math.round(probability)}%`;
           } else {
@@ -898,7 +898,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
           padding: config.forecast.precipitation_type === 'rainfall' && config.forecast.show_probability && config.forecast.type !== 'hourly' ? 3 : 4,
           color: chart_text_color || textColor,
           font: {
-            size: config.forecast.labels_font_size,
+            size: parseInt(config.forecast.labels_font_size),
             lineHeight: 0.7,
           },
           formatter: function (value, context) {
@@ -976,7 +976,7 @@ computeForecastData({ config, forecastItems } = this) {
     tempHigh,
     tempLow,
     precip,
-  }
+  };
 }
 
 /**
