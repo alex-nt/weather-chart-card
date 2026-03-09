@@ -1,6 +1,5 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { copy } from '@web/rollup-plugin-copy';
-import replace from '@rollup/plugin-replace';
 
 const serveopts = {
     contentBase: ['./dist'],
