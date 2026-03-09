@@ -68,7 +68,7 @@ HACS is a third party community store and is not included in Home Assistant out 
 | use_12hour_format      | boolean | false        | Display time in 12-hour format (AM/PM) instead of 24-hour format.                                 |
 | icons                  | string  | none         | Path to the location of custom icons in svg format, for example `/local/weather-icons/`.          |
 | animated_icons         | boolean | false        | Enable the use of animated icons                                                                  |
-| embolden         | boolean | false        | Use bold text and lines                                       |
+| embolden               | boolean | false        | Use bold text and lines                                                                           |
 | icon_style             | string  | 'style1'     | Options are 'style1' and'style2' for different set of animated icons.                             |
 | icons_size             | number  | 25           | The size of the animated or custom icons in pixels.                                               |
 | current_temp_size      | number  | 28           | The size of the current temperature in pixels.                                                    |

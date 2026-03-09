@@ -774,8 +774,8 @@ class WeatherChartCard extends LitElement {
 
         // Note: use weather attributes because forecast is always from weather, not
         // a custom sensor entity.
-        let tempUnit = weather.attributes.temperature_unit;
-        
+        const tempUnit = weather.attributes.temperature_unit;
+
         let precipUnit = null;
         let precipUnitRaw = null;
         if (config.forecast.precipitation_type !== 'rainfall') {
@@ -786,10 +786,12 @@ class WeatherChartCard extends LitElement {
         }
         const data = this.computeForecastData();
 
-        let style = getComputedStyle(document.body);
-        let backgroundColor = style.getPropertyValue('--card-background-color');
-        let textColor = style.getPropertyValue('--primary-text-color');
-        let dividerColor = style.getPropertyValue('--divider-color');
+        const style = getComputedStyle(document.body);
+        const backgroundColor = style.getPropertyValue(
+            '--card-background-color'
+        );
+        const textColor = style.getPropertyValue('--primary-text-color');
+        const dividerColor = style.getPropertyValue('--divider-color');
         const canvas = this.renderRoot.querySelector('#forecastChart');
         if (!canvas) {
             requestAnimationFrame(() => this.drawChart());
@@ -824,11 +826,11 @@ class WeatherChartCard extends LitElement {
         Chart.defaults.scale.grid.color = dividerColor;
         Chart.defaults.elements.line.fill = false;
         Chart.defaults.elements.line.tension = 0.3;
-        Chart.defaults.elements.line.borderWidth = config.embolden ? 3 : 1.5;
+        Chart.defaults.elements.line.borderWidth = config.embolden ? 2 : 1.5;
         Chart.defaults.elements.point.radius = 2;
         Chart.defaults.elements.point.hitRadius = 10;
 
-        let datasets = [
+        const datasets = [
             {
                 label: this.ll('tempHi'),
                 type: 'line',
@@ -962,7 +964,7 @@ class WeatherChartCard extends LitElement {
                         grid: {
                             drawTicks: false,
                             color: config.embolden ? textColor : dividerColor,
-                            ...(config.embolden ? { lineWidth: 3 } : {}),
+                            ...(config.embolden ? { lineWidth: 2 } : {}),
                         },
                         ticks: {
                             ...(config.embolden
@@ -992,8 +994,8 @@ class WeatherChartCard extends LitElement {
                                     ? 4
                                     : 10,
                             callback: function (value, index, values) {
-                                let datetime = this.getLabelForValue(value);
-                                let dateObj = new Date(datetime);
+                                const datetime = this.getLabelForValue(value);
+                                const dateObj = new Date(datetime);
 
                                 if (config.forecast.type !== 'hourly') {
                                     return dateObj
@@ -1003,7 +1005,7 @@ class WeatherChartCard extends LitElement {
                                         .toUpperCase();
                                 }
 
-                                let timeFormatOptions = {
+                                const timeFormatOptions = {
                                     hour12: config.use_12hour_format,
                                     hour: 'numeric',
                                     ...(config.use_12hour_format
@@ -1024,11 +1026,11 @@ class WeatherChartCard extends LitElement {
                                     dateObj.getHours() === 0 &&
                                     dateObj.getMinutes() === 0
                                 ) {
-                                    let dateFormatOptions = {
+                                    const dateFormatOptions = {
                                         day: 'numeric',
                                         month: 'short',
                                     };
-                                    let date = dateObj.toLocaleDateString(
+                                    const date = dateObj.toLocaleDateString(
                                         language,
                                         dateFormatOptions
                                     );
@@ -1076,7 +1078,7 @@ class WeatherChartCard extends LitElement {
                         borderColor: (context) =>
                             context.dataset.backgroundColor,
                         borderRadius: 0,
-                        borderWidth: config.embolden ? 3 : 1.5,
+                        borderWidth: config.embolden ? 2 : 1.5,
                         padding:
                             config.forecast.precipitation_type === 'rainfall' &&
                             config.forecast.show_probability &&
@@ -1100,7 +1102,7 @@ class WeatherChartCard extends LitElement {
                         caretPadding: 15,
                         callbacks: {
                             title: function (TooltipItem) {
-                                let datetime = TooltipItem[0].label;
+                                const datetime = TooltipItem[0].label;
                                 return new Date(datetime).toLocaleDateString(
                                     language,
                                     {
@@ -1114,12 +1116,12 @@ class WeatherChartCard extends LitElement {
                                 );
                             },
                             label: function (context) {
-                                let label = context.dataset.label;
-                                let value = context.formattedValue;
-                                let probability =
+                                const label = context.dataset.label;
+                                const value = context.formattedValue;
+                                const probability =
                                     data.forecast[context.dataIndex]
                                         .precipitation_probability;
-                                let unit =
+                                const unit =
                                     context.datasetIndex === 2
                                         ? precipUnit
                                         : tempUnit;
@@ -1160,17 +1162,17 @@ class WeatherChartCard extends LitElement {
     }
 
     computeForecastData({ config, forecastItems } = this) {
-        let forecast = this.forecasts
+        const forecast = this.forecasts
             ? this.forecasts.slice(0, forecastItems)
             : [];
-        let roundTemp = config.forecast.round_temp == true;
-        let dateTime = [];
-        let tempHigh = [];
-        let tempLow = [];
-        let precip = [];
+        const roundTemp = config.forecast.round_temp == true;
+        const dateTime = [];
+        const tempHigh = [];
+        const tempLow = [];
+        const precip = [];
 
         for (let i = 0; i < forecast.length; i++) {
-            let d = forecast[i];
+            const d = forecast[i];
             dateTime.push(d.datetime);
             tempHigh.push(d.temperature);
             if (typeof d.templow !== 'undefined') {
