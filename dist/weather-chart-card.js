@@ -2384,7 +2384,7 @@ class WeatherChartCardEditor extends i {
         `;
     }
 }
-customElements.define("weather-chart-card-fork-editor", WeatherChartCardEditor);
+customElements.define('weather-chart-card-editor', WeatherChartCardEditor);
 
 /*!
  * @kurkle/color v0.3.4
@@ -18676,7 +18676,7 @@ Chart.register(...registerables, plugin);
 
 class WeatherChartCard extends i {
     static getConfigElement() {
-        return document.createElement("weather-chart-card-fork-editor");
+        return document.createElement('weather-chart-card-editor');
     }
 
     static getStubConfig(hass, unusedEntities, allEntities) {
@@ -20594,14 +20594,13 @@ class WeatherChartCard extends i {
     }
 }
 
-customElements.define("weather-chart-card-fork", WeatherChartCard);
+customElements.define('weather-chart-card', WeatherChartCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-    type: "weather-chart-card-fork",
+    type: 'weather-chart-card',
     name: 'Weather Chart Card',
     description: 'A custom weather card with chart.',
     preview: true,
     documentationURL: 'https://github.com/mlamberts78/weather-chart-card',
 });
-//# sourceMappingURL=weather-chart-card-fork.js.map

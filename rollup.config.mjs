@@ -15,7 +15,7 @@ const serveopts = {
 export default {
     input: 'src/main.js',
     output: {
-        file: 'dist/weather-chart-card-fork.js',
+        file: 'dist/weather-chart-card.js',
         format: 'cjs',
         name: 'WeatherChartCard',
         sourcemap: false,
@@ -24,11 +24,5 @@ export default {
         nodeResolve(),
         copy({ patterns: 'icons/**', rootDir: './src' }),
         copy({ patterns: 'icons2/**', rootDir: './src' }),
-        replace({
-            '"weather-chart-card"': '"weather-chart-card-fork"',
-            '"weather-chart-card-editor"': '"weather-chart-card-fork-editor"',
-            "'weather-chart-card'": '"weather-chart-card-fork"',
-            "'weather-chart-card-editor'": '"weather-chart-card-fork-editor"',
-        }),
     ],
 };
