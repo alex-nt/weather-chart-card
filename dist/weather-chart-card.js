@@ -19637,7 +19637,7 @@ class WeatherChartCard extends i {
                                                   config.forecast
                                                       .labels_font_size
                                               ) - 2,
-                                          lineHeight: 0.7,
+                                          lineHeight: 1,
                                           ...(config.embolden
                                               ? { weight: 'bold' }
                                               : {}),
